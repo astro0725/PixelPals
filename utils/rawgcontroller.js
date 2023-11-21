@@ -168,3 +168,4 @@ const closeModal = () => {
 // Example usage:
 const apiKey = 'a7f884c3e8d24c95acac41dabed0465d';
 displayGamesByRating(apiKey, 8.0);
+
