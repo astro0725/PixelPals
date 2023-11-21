@@ -1,5 +1,5 @@
 
-const RAWG_KEY = `?token&key=aaadbe900b0f429ea88c22d1c7f9badf`;    // key for SDR
+const RAWG_KEY = `a7f884c3e8d24c95acac41dabed0465d`;    // key for SDR
 const RAWG_URL = `https://rawg.io/api/`;
 
 /*
@@ -81,3 +81,90 @@ const getGameByName = function(gameToFind)
     });
 
 } // end getGameByName
+
+//
+
+const displayGamesByRating = async (apiKey, ratingMin = 0, ratingMax = 10, pageSize = 10) => {
+  const endpoint = "https://api.rawg.io/api/games";
+  
+  const params = new URLSearchParams({
+      key: apiKey,
+      page_size: pageSize,
+      ordering: '-rating',
+      rating_min: ratingMin,
+      rating_max: ratingMax,
+  });
+
+  const url = `${endpoint}?${params.toString()}`;
+
+  try {
+      const response = await fetch(url);
+
+      if (response.ok) {
+          const data = await response.json();
+          const games = data.results || [];
+          
+          // Get the container element where the game information will be displayed
+          const gameContainer = document.getElementById('gameContainer');
+
+          // Display game information
+          games.forEach(game => {
+              // Create a new paragraph element
+              const paragraph = document.createElement('p');
+              
+              // Set the text content of the paragraph
+              paragraph.textContent = `${game.name} - Rating: ${game.rating}`;
+
+              // Add a click event listener to toggle the selected state
+              paragraph.addEventListener('click', () => toggleSelection(paragraph));
+
+              // Append the paragraph to the container
+              gameContainer.appendChild(paragraph);
+          });
+      } else {
+          console.error(`Error: Unable to fetch games. Status code: ${response.status}`);
+      }
+  } catch (error) {
+      console.error(`Error: ${error.message}`);
+  }
+};
+
+// Function to toggle the selected state
+const toggleSelection = (element) => {
+  element.classList.toggle('selected');
+};
+
+// Function to open the modal with detailed information
+const openModal = (game) => {
+  const modal = document.getElementById('myModal');
+  const modalContent = document.getElementById('modalContent');
+  
+  // Clear previous content
+  modalContent.innerHTML = '';
+
+  // Create elements for detailed information
+  const heading = document.createElement('h2');
+  heading.textContent = game.name;
+
+  const rating = document.createElement('p');
+  rating.textContent = `Rating: ${game.rating}`;
+
+  // You can add more details here
+
+  // Append elements to modal content
+  modalContent.appendChild(heading);
+  modalContent.appendChild(rating);
+
+  // Display the modal
+  modal.style.display = 'block';
+};
+
+// Function to close the modal
+const closeModal = () => {
+  const modal = document.getElementById('myModal');
+  modal.style.display = 'none';
+};
+
+// Example usage:
+const apiKey = 'a7f884c3e8d24c95acac41dabed0465d';
+displayGamesByRating(apiKey, 8.0);
