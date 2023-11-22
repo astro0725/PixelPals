@@ -4,23 +4,10 @@ const bodyParser = require("body-parser");
 const express = require("express");
 const exphbs = require("express-handlebars");
 const hbs = exphbs.create({ defaultLayout: "main" });
+const firebase = require("firebase/app");
 const admin = require("firebase-admin");
-
-const serviceAccount = {
-  type: process.env.FIREBASE_TYPE,
-  project_id: process.env.FIREBASE_PROJECT_ID,
-  private_key_id: process.env.FIREBASE_PRIVATE_KEY_ID,
-  private_key: process.env.FIREBASE_PRIVATE_KEY,
-  client_email: process.env.FIREBASE_CLIENT_EMAIL,
-  client_id: process.env.FIREBASE_CLIENT_ID,
-  auth_uri: process.env.FIREBASE_AUTH_URI,
-  token_uri: process.env.FIREBASE_TOKEN_URI,
-  auth_provider_x509_cert_url: process.env.FIREBASE_AUTH_PROVIDER_X509_CERT_URL,
-  client_x509_cert_url: process.env.FIREBASE_CLIENT_X509_CERT_URL,
-  universe_domain: process.env.FIREBASE_UNIVERSE_DOMAIN
-};
-
-// const serviceAccount = require("./serviceAccountKey.json");
+const serviceAccount = require("./serviceAccountKey.json");
+const firebaseApp = firebase.initializeApp(serviceAccount);
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -136,22 +123,25 @@ app.get("/sessionLogout", async (req, res) => {
   }
 });
 
-app.get('/searchPopulate', async (req, res) => {
+app.get("/searchPopulate", async (req, res) => {
   try {
-      const users = await fetchRandomUsers(5); 
-      const posts = await fetchRandomPosts(10); 
+    const users = await fetchRandomUsers(5);
+    const posts = await fetchRandomPosts(10);
 
-      res.json({ users, posts });
+    res.json({ users, posts });
   } catch (error) {
-      res.status(500).send('Error fetching initial data');
+    res.status(500).send("Error fetching initial data");
   }
 });
 
 // partial registration
-hbs.handlebars.registerPartial('header', './views/partials/header.handlebars');
-hbs.handlebars.registerPartial('footer', './views/partials/sidebar.handlebars');
-hbs.handlebars.registerPartial('createPost', './views/partials/createPost.handlebars');
-hbs.handlebars.registerPartial('search', './views/partials/search.handlebars');
+hbs.handlebars.registerPartial("header", "./views/partials/header.handlebars");
+hbs.handlebars.registerPartial("footer", "./views/partials/sidebar.handlebars");
+hbs.handlebars.registerPartial(
+  "createPost",
+  "./views/partials/createPost.handlebars"
+);
+hbs.handlebars.registerPartial("search", "./views/partials/search.handlebars");
 // start the server
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
