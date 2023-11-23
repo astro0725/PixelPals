@@ -7,13 +7,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
+            const username = document.getElementById('username').value;
 
             fetch('/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ email, password }),
+                body: JSON.stringify({ email, password, username }),
             })
             .then(response => {
                 if (response.ok) {
