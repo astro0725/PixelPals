@@ -5,10 +5,10 @@
     </div>
     <div class="flex flex-nowrap">
         {{#if userIsAuthenticated}}
-            <button id="logoutButton" rel="noopener noreferrer" href="/sessionLogout" class="self-center px-8 py-3 rounded bg-white">Logout</button>
+            <button id="signOutButton" class="self-center px-8 py-3 rounded bg-white">Logout</button>
         {{else}}
-            <button id="loginButton" rel="noopener" href="/loginPage" class="self-center px-8 py-3 rounded bg-white mr-2">Sign in</button>
-            <button id="signUpButton" rel="noopener" href="/signupPage" class="self-center px-8 py-3 font-semibold rounded bg-neon-pink text-white">Sign up</button>
+            <button id="signInButton" class="self-center px-8 py-3 rounded bg-white mr-2">Sign in</button>
+            <button id="signUpButton" class="self-center px-8 py-3 font-semibold rounded bg-neon-pink text-white">Sign up</button>
         {{/if}}
     </div>
 </header>

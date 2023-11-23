@@ -1,28 +1,19 @@
-const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection'); // Adjust the path as needed
-
-class User extends Model {}
-
-User.init(
-    {
+module.exports = (sequelize, DataTypes) => {
+    class User extends sequelize.Sequelize.Model {}
+    User.init({
         firebaseUserId: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        primaryKey: true
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: true
         },
-        firebaseUserName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true
+        username: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: true
         }
-    },
-    {
+    }, {
         sequelize,
-        timestamps: true,
-        freezeTableName: true,
-        underscored: true,
-        modelName: 'user',
-    }
-);
-
-module.exports = User;
+        modelName: 'User'
+    });
+    return User;
+};

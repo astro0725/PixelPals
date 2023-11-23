@@ -2,11 +2,15 @@ const express = require('express');
 const router = express.Router();
 
 // Import individual route modules
-const feedRoutes = require('./feed');
-const postRoutes = require('./posts');
+const signInRoutes = require('./signIn');
+const signUpRoutes = require('./signUp');
+const signOutRoutes = require('./signOut');
+const profileRoutes = require('./profile');
 
 // Use the imported routes
-router.use('/', feedRoutes);
-router.use('/posts', postRoutes);
+router.use('/signin', signInRoutes);
+router.use('/signup', signUpRoutes);
+router.use('/signout', signOutRoutes);
+router.use('/profile', profileRoutes);
 
 module.exports = router;

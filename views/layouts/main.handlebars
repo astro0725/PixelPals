@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PixelPals</title>
   <link href="/css/styles.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/login/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 
@@ -15,19 +14,14 @@
   {{> header }}
   <!-- Render the sidebar partial -->
   {{> sidebar }}
-  <!-- Render the search partial -->
-  {{> searchbar }}
-  <!-- Render the post modal -->
-  {{> createPost }}
+  <!-- Render the modal partials -->
   <!-- Render the sub layout -->
   {{{ body }}}
 </body>
 <!-- Include the JavaScript file for handling special functions -->
-<script src="/js/header/login.js"></script>
+<script src="/js/header/signin.js"></script>
 <script src="/js/header/signup.js"></script>
-<script src="/js/header/logout.js"></script>
-<script src="/js/sidebar/createPost.js"></script>
-<script src="/js/sidebar/search.js"></script>
-<script src="/js/posts/carousel.js"></script>
-<script src="/js/posts/deletePost.js"></script>
+<script src="/js/header/signout.js"></script>
+<script src="/js/userAuth/signup.js"></script>
+<script src="/js/userAuth/signin.js"></script>
 </html>

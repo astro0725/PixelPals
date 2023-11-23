@@ -1,4 +1,4 @@
-const { Post } = require("../../models");
+const { Post } = require("../models/post");
 const multer = require('multer');
 const path = require('path');
 
@@ -30,17 +30,6 @@ const upload = multer({
     fileFilter: fileFilter,
     limits: {
         fileSize: 1024 * 1024 * 5 // 5 MB limit for file size
-    }
-}).fields([{ name: 'image', maxCount: 3 }, { name: 'video', maxCount: 1 }], (error, req, res, next) => {
-    if (error) {
-        if (error.code === 'LIMIT_FILE_SIZE') {
-            req.multerError = 'File size is too large!';
-        } else {
-            req.multerError = error.message;
-        }
-        next();
-    } else {
-        next();
     }
 });
 
