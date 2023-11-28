@@ -1,4 +1,4 @@
-<header class="p-10 flex flex-wrap justify-between items-center w-full bg-dark-purple" id="header">
+<header class="p-10 flex flex-wrap justify-between items-center w-full bg-dark" id="header">
     <div class="flex items-center">
         <h1 class="text-pink font-press-start text-4xl">Pixel</h1>
         <h1 class="text-white font-press-start text-4xl">Pals</h1>
@@ -7,8 +7,8 @@
         {{#if userIsAuthenticated}}
             <button id="signOutButton" class="self-center px-8 py-3 rounded bg-white">Logout</button>
         {{else}}
-            <button id="signInButton" class="self-center px-8 py-3 rounded bg-white mr-2">Sign in</button>
-            <button id="signUpButton" class="self-center px-8 py-3 font-semibold rounded bg-neon-pink text-white">Sign up</button>
+            <button id="signInButton" class="self-center px-8 py-3 rounded bg-white hover:bg-purple mr-2">Sign in</button>
+            <button id="signUpButton" class="self-center px-8 py-3 font-semibold rounded bg-dark-purple hover:bg-neon-pink text-white">Sign up</button>
         {{/if}}
     </div>
 </header>
