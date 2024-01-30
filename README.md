@@ -7,4 +7,4 @@ Pixel Pals is a gaming social media app designed to bring together like-minded g
 ![PixelPal screenshot](./assets/profilepage%20(1).jpg "PixelPal screenshot")
 
 ## Deployed Application
-[Add a link to your deployed application here]
+[https://pixelpals-e25385dd7e6c.herokuapp.com]
