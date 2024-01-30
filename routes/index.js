@@ -13,4 +13,8 @@ router.use('/signup', signUpRoutes);
 router.use('/signout', signOutRoutes);
 router.use('/profile', profileRoutes);
 
+router.get('/', (req, res) => {
+  res.send('Hello, this is the root page!');
+});
+
 module.exports = router;
